@@ -7,8 +7,6 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ServerClientMockup", "Serve
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DatabaseManager", "DatabaseManager\DatabaseManager.vbproj", "{907ADB99-63B8-4121-BD09-C6BB07C837EE}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DatabaseUtility", "DatabaseUtility\DatabaseUtility.vbproj", "{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CommonUtil", "CommonUtil\CommonUtil.vbproj", "{72D02B51-0D27-4BF0-A84C-35E7EFD06929}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ServerClientMockupCore", "ServerClientMockupCore\ServerClientMockupCore.vbproj", "{9AE19707-F91E-4CEB-895C-FDF8D205F5EF}"
@@ -39,14 +37,6 @@ Global
 		{907ADB99-63B8-4121-BD09-C6BB07C837EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{907ADB99-63B8-4121-BD09-C6BB07C837EE}.Release|x86.ActiveCfg = Release|x86
 		{907ADB99-63B8-4121-BD09-C6BB07C837EE}.Release|x86.Build.0 = Release|x86
-		{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}.Debug|x86.ActiveCfg = Debug|x86
-		{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}.Debug|x86.Build.0 = Debug|x86
-		{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}.Release|x86.ActiveCfg = Release|x86
-		{C521F0F5-EC64-48EB-9DAD-066C30ABECB4}.Release|x86.Build.0 = Release|x86
 		{72D02B51-0D27-4BF0-A84C-35E7EFD06929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72D02B51-0D27-4BF0-A84C-35E7EFD06929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72D02B51-0D27-4BF0-A84C-35E7EFD06929}.Debug|x86.ActiveCfg = Debug|x86

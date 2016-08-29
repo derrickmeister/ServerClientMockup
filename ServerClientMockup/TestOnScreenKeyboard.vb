@@ -10,11 +10,6 @@
         Next
     End Sub
 
-    Private Sub TestOnScreenKeyboard_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        If Not _isKeyboardHidden Then Exit Sub
-        CommonUtil.OnScreenKeybaordHandler.ShowOnScreenKeyboard(_lastFocusedTextBoxCtrl)
-    End Sub
-
     Private Sub TestOnScreenKeyboard_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate
         CommonUtil.OnScreenKeybaordHandler.CloseOnScreenKeyboard()
         _isKeyboardHidden = True
