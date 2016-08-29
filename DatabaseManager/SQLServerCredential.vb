@@ -9,7 +9,7 @@
 
     Public ReadOnly Property FormattedDataSource As String
         Get
-            If ServerURL.ToUpper.Equals("LOCAL") Then
+            If ServerURL.ToUpper.Equals("LOCAL") OrElse ServerURL.ToUpper.Equals(My.Computer.Name) Then
                 Return String.Format(".\{0}", ServerInstanceName)
             Else
                 Return String.Format("{0}\{1},{2}", ServerURL, ServerInstanceName, ServerPort)
