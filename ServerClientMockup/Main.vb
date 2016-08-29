@@ -9,33 +9,39 @@
 
     Private Sub Main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         'Validate Database Connection
-        If Not ValidateDatabaseConnection() Then
+        If Not DatabaseManager.DBConnectionHandler.ValidateConnection Then
             'Show list of servers to connect
-            If Not DatabaseManager.DBConnectionHandler.ShowAvailableSQLServerList() Then Close()
+            If Not DatabaseManager.DBConnectionHandler.ShowAvailableSQLServerList() Then Close() : Exit Sub
         End If
 
         'Validate Station Registration
         If Not ValidateStationRegistration() Then
             'Show station registraion confirmation (Add / Swap)
             Close()
+            Exit Sub
         End If
 
         'Validate Station Activation
         If Not ValidateStationActivation() Then
             Close()
+            Exit Sub
         End If
         'Show Login
 
         Dim frmLogin As New LoginForm
-        If frmLogin.ShowDialog = DialogResult.Cancel Then Close()
+        If frmLogin.ShowDialog = DialogResult.Cancel Then Close() : Exit Sub
 
     End Sub
 
     Private Function ValidateDatabaseConnection() As Boolean
-        Using conn As SqlClient.SqlConnection = DatabaseManager.DBConnectionHandler.GetConnection
-            conn.Open()
-            Return True
-        End Using
+        Try
+            Using conn As SqlClient.SqlConnection = DatabaseManager.DBConnectionHandler.GetConnection(5)
+                conn.Open()
+                Return True
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
     End Function
 
     Private Function ValidateStationRegistration() As Boolean

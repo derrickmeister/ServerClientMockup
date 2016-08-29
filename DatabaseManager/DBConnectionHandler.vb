@@ -2,27 +2,37 @@
 
 Public Class DBConnectionHandler
 
-    Public Shared Function GetConnection() As SqlConnection
+    Private Shared _sqlServerCredential As SQLServerCredential
+
+    Public Shared Function ValidateConnection(Optional throwException As Boolean = False) As Boolean
+        Try
+            Using conn As SqlConnection = GetConnection(5)
+                conn.Open()
+                Return True
+            End Using
+        Catch ex As Exception
+            Debug.Print(ex.Message)
+            If throwException Then Throw
+            Return False
+        End Try
+    End Function
+
+    Public Shared Function GetConnection(Optional connectionTimeoutSec As Integer = 15) As SqlConnection
+        If _sqlServerCredential Is Nothing Then _sqlServerCredential = New SQLServerCredential
+
         Dim scsBuilder = New SqlConnectionStringBuilder
-        scsBuilder.DataSource = GetDataSourceInfo()
+        scsBuilder.DataSource = _sqlServerCredential.FormattedDataSource
         scsBuilder.IntegratedSecurity = False
-        scsBuilder.UserID = "sa"
-        scsBuilder.Password = "simple1234"
-        scsBuilder.InitialCatalog = "SuperSimple"
-        scsBuilder.ConnectTimeout = 30
+        scsBuilder.UserID = _sqlServerCredential.UserID
+        scsBuilder.Password = _sqlServerCredential.Password
+        scsBuilder.InitialCatalog = _sqlServerCredential.DatabaseName
+        scsBuilder.ConnectTimeout = connectionTimeoutSec
         scsBuilder.MultipleActiveResultSets = True
         Return New SqlConnection(scsBuilder.ToString)
     End Function
 
-    Private Shared Function GetDataSourceInfo() As String
-        If CommonUtil.RegistryHandler.SQLServerURL.ToUpper.Equals("LOCAL") Then
-            Return String.Format(".\{0}", CommonUtil.RegistryHandler.SQLServerInstanceName)
-        Else
-            Return String.Format("{0}\{1},{2}", CommonUtil.RegistryHandler.SQLServerURL, CommonUtil.RegistryHandler.SQLServerInstanceName, CommonUtil.RegistryHandler.SQLServerPort)
-        End If
-    End Function
-
     Public Shared Function ShowAvailableSQLServerList() As Boolean
-        Throw New NotImplementedException()
+        Dim sqlServerSelectionPopup As New SQLServerSelectionPopup(_sqlServerCredential)
+        Return sqlServerSelectionPopup.ShowDialog = Windows.Forms.DialogResult.OK
     End Function
 End Class
